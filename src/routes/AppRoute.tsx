@@ -15,8 +15,16 @@ export default function AppRoute() {
         name="home"
         options={{headerTitle: props => <LogoTitle {...props} />}}
       />
-      <Screen component={AllProductScreen} name="allProduct" />
-      <Screen component={AllCategoriesScreen} name="allCategories" />
+      <Screen
+        component={AllProductScreen}
+        name="allProduct"
+        options={{title: 'Semua Produk'}}
+      />
+      <Screen
+        component={AllCategoriesScreen}
+        name="allCategories"
+        options={{title: 'Semua Kategori'}}
+      />
     </Navigator>
   );
 }
