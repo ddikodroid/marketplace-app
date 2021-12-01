@@ -1,15 +1,22 @@
 import React from 'react';
+import {useNavigation} from '@react-navigation/core';
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
-import {useQuery} from 'react-query';
-import {BannerSection} from '../components';
-import {fetchBanners} from '../services/apis';
+import {BannerSection, CategorySection} from '../components';
+import {useBanners, useCategories} from '../services/queries';
 
 export function HomeScreen() {
-  const {data: banners} = useQuery('banners', fetchBanners);
-  console.log(banners);
+  const navigation = useNavigation();
+  const {data: banners, isFetching: fetchingBanner} = useBanners();
+  const {data: categories, isFetching: fetchingCategory} = useCategories();
+
+  if (fetchingBanner || fetchingCategory) return <Text>Loading...</Text>;
   return (
     <SafeAreaView style={styles.screen}>
       <BannerSection data={banners.data} />
+      <CategorySection
+        data={categories.data}
+        onPressSeeAll={() => navigation.navigate('allCategories')}
+      />
     </SafeAreaView>
   );
 }
@@ -17,6 +24,7 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    justifyContent: 'flex-start',
     backgroundColor: 'white',
   },
 });
