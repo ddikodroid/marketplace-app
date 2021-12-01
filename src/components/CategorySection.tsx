@@ -4,16 +4,13 @@ import {size} from '../utils/size';
 import {CategoryCard} from './CategoryCard';
 import {HomeSectionTitle} from './HomeSectionTitle';
 
-export function CategorySection({data}) {
+export function CategorySection({data, onPressSeeAll}) {
   const renderCategories = ({item}) => (
     <CategoryCard {...item} categoryCardStyle={styles.card} />
   );
   return (
     <View>
-      <HomeSectionTitle
-        title="Kategori"
-        onPressSeeAll={() => console.log('Tes')}
-      />
+      <HomeSectionTitle title="Kategori" onPressSeeAll={onPressSeeAll} />
       <FlatList
         horizontal
         data={data.slice(0, 6)}
