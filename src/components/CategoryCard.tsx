@@ -21,7 +21,7 @@ export function CategoryCard({
   categoryCardStyle,
 }: ICategoryCard) {
   return (
-    <Shadow containerViewStyle={categoryCardStyle} distance={5}>
+    <Shadow containerViewStyle={categoryCardStyle} distance={2.5}>
       <View style={styles.view}>
         <Image source={{uri: icon}} style={styles.icon} />
         <Text style={styles.text}>{category_name}</Text>
