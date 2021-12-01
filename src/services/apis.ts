@@ -17,10 +17,10 @@ export const fetchProduct = async () => {
   return res.json();
 };
 
-export const fetchProducts = async ({pageParam = 1}) => {
+export const fetchProducts = async pageParam => {
   const res = await fetch(
     `${BASE_URL}/product-recommendation?page=${pageParam}`,
   );
   const results = await res.json();
-  return {results, nextPage: pageParam + 1};
+  return results;
 };
