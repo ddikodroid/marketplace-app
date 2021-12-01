@@ -1,15 +1,27 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {Shadow} from 'react-native-shadow-2';
 import {size} from '../utils/size';
 interface ICategoryCard {
   category_name: string;
   icon: string;
+  categoryCardStyle: StyleProp<ViewStyle>;
 }
 
-export function CategoryCard({category_name, icon}: ICategoryCard) {
+export function CategoryCard({
+  category_name,
+  icon,
+  categoryCardStyle,
+}: ICategoryCard) {
   return (
-    <Shadow containerViewStyle={styles.container} distance={5}>
+    <Shadow containerViewStyle={categoryCardStyle} distance={5}>
       <View style={styles.view}>
         <Image source={{uri: icon}} style={styles.icon} />
         <Text style={styles.text}>{category_name}</Text>
@@ -19,9 +31,6 @@ export function CategoryCard({category_name, icon}: ICategoryCard) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 8,
-  },
   view: {
     width: size(96),
     height: size(96),
