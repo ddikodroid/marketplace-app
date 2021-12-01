@@ -9,7 +9,7 @@ export function CategorySection({data, onPressSeeAll}) {
     <CategoryCard {...item} categoryCardStyle={styles.card} />
   );
   return (
-    <View>
+    <View style={styles.container}>
       <HomeSectionTitle title="Kategori" onPressSeeAll={onPressSeeAll} />
       <FlatList
         horizontal
@@ -23,6 +23,9 @@ export function CategorySection({data, onPressSeeAll}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: size(8),
+  },
   card: {
     marginLeft: size(12),
     marginVertical: size(8),
