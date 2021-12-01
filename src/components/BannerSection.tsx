@@ -34,9 +34,10 @@ export function BannerSection({data}: IBannerSection) {
 const styles = StyleSheet.create({
   banner: {
     marginLeft: size(12),
-    marginVertical: size(12),
+    marginTop: size(12),
   },
   sectionContainer: {
     paddingRight: size(12),
+    marginBottom: size(8),
   },
 });
