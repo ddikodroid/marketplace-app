@@ -11,3 +11,16 @@ export const fetchCategories = async () => {
   );
   return res.json();
 };
+
+export const fetchProduct = async () => {
+  const res = await fetch(`${BASE_URL}/product-recommendation?page=1`);
+  return res.json();
+};
+
+export const fetchProducts = async ({pageParam = 1}) => {
+  const res = await fetch(
+    `${BASE_URL}/product-recommendation?page=${pageParam}`,
+  );
+  const results = await res.json();
+  return {results, nextPage: pageParam + 1};
+};
