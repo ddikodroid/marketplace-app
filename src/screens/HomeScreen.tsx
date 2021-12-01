@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/core';
-import {StyleSheet, Text, SafeAreaView} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, ScrollView} from 'react-native';
 import {
   BannerSection,
   CategorySection,
@@ -18,15 +18,17 @@ export function HomeScreen() {
     return <Text>Loading...</Text>;
   return (
     <SafeAreaView style={styles.screen}>
-      <BannerSection data={banners.data} />
-      <CategorySection
-        data={categories.data}
-        onPressSeeAll={() => navigation.navigate('allCategories')}
-      />
-      <RecommendedProductSection
-        data={products.data}
-        onPressSeeAll={() => navigation.navigate('allProduct')}
-      />
+      <ScrollView>
+        <BannerSection data={banners.data} />
+        <CategorySection
+          data={categories.data}
+          onPressSeeAll={() => navigation.navigate('allCategories')}
+        />
+        <RecommendedProductSection
+          data={products.data}
+          onPressSeeAll={() => navigation.navigate('allProduct')}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -34,7 +36,6 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'flex-start',
     backgroundColor: 'white',
     paddingBottom: 16,
   },
