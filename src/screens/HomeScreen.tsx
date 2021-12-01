@@ -1,21 +1,31 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {StyleSheet, Text, SafeAreaView} from 'react-native';
-import {BannerSection, CategorySection} from '../components';
-import {useBanners, useCategories} from '../services/queries';
+import {
+  BannerSection,
+  CategorySection,
+  RecommendedProductSection,
+} from '../components';
+import {useBanners, useCategories, useProducts} from '../services/queries';
 
 export function HomeScreen() {
   const navigation = useNavigation();
   const {data: banners, isFetching: fetchingBanner} = useBanners();
   const {data: categories, isFetching: fetchingCategory} = useCategories();
+  const {data: products, isFetching: fetchingProducts} = useProducts();
 
-  if (fetchingBanner || fetchingCategory) return <Text>Loading...</Text>;
+  if (fetchingBanner || fetchingCategory || fetchingProducts)
+    return <Text>Loading...</Text>;
   return (
     <SafeAreaView style={styles.screen}>
       <BannerSection data={banners.data} />
       <CategorySection
         data={categories.data}
         onPressSeeAll={() => navigation.navigate('allCategories')}
+      />
+      <RecommendedProductSection
+        data={products.data}
+        onPressSeeAll={() => navigation.navigate('allProduct')}
       />
     </SafeAreaView>
   );
@@ -26,5 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: 'white',
+    paddingBottom: 16,
   },
 });
