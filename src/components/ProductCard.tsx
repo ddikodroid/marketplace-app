@@ -39,10 +39,8 @@ export function ProductCard({
           {capitalizeFirstLetter(product_name)}
         </Text>
         <Text style={styles.price}>{convertToRupiah(normal_price)}</Text>
-        <View style={styles.footer}>
-          <Text style={styles.location}>{location}</Text>
-          <Text style={styles.stock}>Stok: {product_stock}</Text>
-        </View>
+        <Text style={styles.location}>{location}</Text>
+        <Text style={styles.stock}>Stok: {product_stock}</Text>
       </View>
     </Shadow>
   );
@@ -73,10 +71,6 @@ const styles = StyleSheet.create({
     fontSize: size(12),
     fontWeight: 'bold',
     marginBottom: size(2),
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   location: {
     color: 'black',
