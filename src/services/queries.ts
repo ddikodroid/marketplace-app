@@ -11,12 +11,21 @@ export const useCategories = () => useQuery('categories', fetchCategories);
 export const useProducts = () => useQuery('products', fetchProduct);
 export const useInfiniteProducts = () =>
   useInfiniteQuery(
-    'infiniteProducts',
+    'allProducts',
     ({pageParam = 1}) => fetchProducts(pageParam),
     {
+      select: products => {
+        const allProducts = [];
+        products.pages
+          ? products.pages.forEach(result => allProducts.push(result.data))
+          : null;
+
+        const flattenedAllProducts = allProducts.flat();
+        return flattenedAllProducts;
+      },
       getNextPageParam: lastPage => {
-        const {prev: page, total_page: totalPages} = lastPage.meta;
-        return page < totalPages ? page + 1 : undefined;
+        const {total_page: totalPages, next} = lastPage.meta;
+        return next !== totalPages ? next : undefined;
       },
     },
   );
