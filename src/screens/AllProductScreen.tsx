@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import {Loading} from '../components';
 import ProductCard from '../components/ProductCard';
@@ -14,16 +14,19 @@ export function AllProductScreen() {
     hasNextPage,
   } = useInfiniteProducts();
 
-  const renderProduct = ({item}) => {
-    return <ProductCard {...item} productCardStyle={styles.card} />;
-  };
+  const renderProduct = useCallback(
+    ({item}) => {
+      return <ProductCard {...item} productCardStyle={styles.card} />;
+    },
+    [allProducts],
+  );
   return (
     <SafeAreaView style={styles.screen}>
       <FlatList
         data={allProducts}
         renderItem={renderProduct}
         numColumns={2}
-        keyExtractor={(item, index) => `${item}-${index}`}
+        keyExtractor={item => item.image_name}
         contentContainerStyle={styles.contentContainer}
         style={styles.flatlistView}
         onEndReached={
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: '100%',
+    backgroundColor: 'white',
   },
   card: {
     marginHorizontal: size(16),
