@@ -22,6 +22,7 @@ export function RecommendedProductSection({data, onPressSeeAll}) {
         keyExtractor={(item, index) => `${item}-${index}`}
         overScrollMode="never"
         contentContainerStyle={styles.sectionContainer}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

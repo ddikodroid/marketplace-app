@@ -17,6 +17,7 @@ export function CategorySection({data, onPressSeeAll}) {
         renderItem={renderCategories}
         overScrollMode="never"
         contentContainerStyle={styles.sectionContainer}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );
