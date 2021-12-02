@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     width: '100%',
-    paddingVertical: size(8),
   },
   card: {
     marginHorizontal: size(16),
@@ -52,5 +51,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignSelf: 'center',
+    paddingVertical: size(12),
   },
 });
