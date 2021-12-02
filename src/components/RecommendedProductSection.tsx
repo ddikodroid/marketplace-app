@@ -1,9 +1,9 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {size} from '../utils/size';
-import {CategoryCard} from './CategoryCard';
 import {HomeSectionTitle} from './HomeSectionTitle';
-import {ProductCard} from './ProductCard';
+import ProductCard from './ProductCard';
+// import {ProductCard} from './ProductCard';
 
 export function RecommendedProductSection({data, onPressSeeAll}) {
   const renderProduct = ({item}) => (
