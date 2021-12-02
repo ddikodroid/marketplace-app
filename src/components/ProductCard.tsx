@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {
   Image,
   StyleProp,
@@ -20,7 +20,7 @@ interface IProductCard {
   productCardStyle: StyleProp<ViewStyle>;
 }
 
-export function ProductCard({
+function ProductCard({
   product_name,
   product_stock,
   normal_price,
@@ -45,6 +45,8 @@ export function ProductCard({
     </Shadow>
   );
 }
+
+export default memo(ProductCard);
 
 const styles = StyleSheet.create({
   image: {
