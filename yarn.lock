@@ -5514,6 +5514,11 @@ react-native-dotenv@^3.3.0:
   dependencies:
     dotenv "^10.0.0"
 
+react-native-flipper@^0.123.0:
+  version "0.123.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.123.0.tgz#06972ea704962fcffd42db63bdaed3d8f6fcce84"
+  integrity sha512-pWFf/Z9ljZvATciXPnuNGn+gjd57bQzkUNmnhUKk/MZM6oh4zhEb3/Idh1bDwqulW81Sk5H1tXCQmdSRlqwKMQ==
+
 react-native-safe-area-context@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz#9549a2ce580f2374edb05e49d661258d1b8bcaed"
@@ -5578,6 +5583,13 @@ react-native@0.66.3:
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
+
+react-query-native-devtools@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-query-native-devtools/-/react-query-native-devtools-3.0.1.tgz#7244eddb7f6d18bad87a373ba83f16e7a5a0454e"
+  integrity sha512-n7Sf3jQz9kdaEWN1gzZkIOePTQ09KOG1KMEQqJRvMylW7mdG8Ec9GqvuFn8bhZ4Y/mnCQcGMbMpDn0kYmKy2DQ==
+  dependencies:
+    flatted "^3.1.0"
 
 react-query@^3.33.7:
   version "3.33.7"
