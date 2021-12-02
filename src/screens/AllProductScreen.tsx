@@ -1,39 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import {Alert, FlatList, SafeAreaView, StyleSheet} from 'react-native';
-import {BASE_URL} from 'react-native-dotenv';
-import {ProductCard} from '../components';
+import React from 'react';
+import {FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import {Loading} from '../components';
+import ProductCard from '../components/ProductCard';
+// import {ProductCard} from '../components';
+import {useInfiniteProducts} from '../services/queries';
 import {size} from '../utils/size';
 
 export function AllProductScreen() {
-  const [lastPage, setLastPage] = useState<number>(0);
-  const [page, setPage] = useState(1);
-  const [products, setProducts] = useState<any>([]);
-
-  useEffect(() => {
-    let mounted = true;
-    const getProducts = async () => {
-      try {
-        if (mounted) {
-          const response = await fetch(
-            `${BASE_URL}/product-recommendation?page=${page}`,
-          );
-          const results = await response.json();
-          setLastPage(results.meta.total_page);
-          setProducts([...products, ...results.data]);
-        }
-      } catch (error) {
-        Alert.alert('Request Failed ' + error);
-      }
-    };
-    getProducts();
-    return () => (mounted = false);
-  }, [page]);
-
-  const loadMoreProduct = () => {
-    if (page < lastPage) {
-      setPage(prev => prev + 1);
-    }
-  };
+  const {
+    data: allProducts,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteProducts();
 
   const renderProduct = ({item}) => {
     return <ProductCard {...item} productCardStyle={styles.card} />;
@@ -41,13 +20,16 @@ export function AllProductScreen() {
   return (
     <SafeAreaView style={styles.screen}>
       <FlatList
-        data={products}
+        data={allProducts}
         renderItem={renderProduct}
         numColumns={2}
         keyExtractor={(item, index) => `${item}-${index}`}
         contentContainerStyle={styles.contentContainer}
         style={styles.flatlistView}
-        onEndReached={loadMoreProduct}
+        onEndReached={
+          !isFetchingNextPage && hasNextPage ? () => fetchNextPage() : null
+        }
+        ListFooterComponent={isFetchingNextPage ? <Loading /> : null}
         onEndReachedThreshold={0.2}
       />
     </SafeAreaView>
